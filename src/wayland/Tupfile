@@ -1,0 +1,14 @@
+include_rules
+
+ifndef WAYLAND_XML
+  error location of WAYLAND_XML file not configured
+endif
+
+NIM_GROUPS = $(PROJECT_DIR)/<lock>
+  # The <protocol> is added to NIM_GROUPS at the top level so redefine NIM_GROUPS here.
+
+: codegenerator.nim |> !nim |> {codegen}
+: {codegen} |> ./codegenerator < @(WAYLAND_XML) > %o |> globals.nim | ./<protocol> {protocol}
+
+NIM_FLAGS += --path:../
+: foreach {protocol} |> !nim_check |> | ./<protocol>

@@ -1,0 +1,182 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "metadata": {
+    "component": {
+      "type": "library",
+      "bom-ref": "pkg:nim/wayland",
+      "name": "wayland",
+      "description": "Nim native Wayland client",
+      "version": "20240729",
+      "authors": [
+        {
+          "name": "Emery Hemingway"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Unlicense"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "nim:srcDir",
+          "value": "src"
+        },
+        {
+          "name": "nim:backend",
+          "value": "c"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:nim/sys",
+      "name": "sys",
+      "version": "4ef3b624db86e331ba334e705c1aa235d55b05e1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/ehmry/nim-sys/archive/4ef3b624db86e331ba334e705c1aa235d55b05e1.tar.gz",
+          "type": "source-distribution"
+        },
+        {
+          "url": "https://github.com/ehmry/nim-sys.git",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "nix:fod:method",
+          "value": "fetchzip"
+        },
+        {
+          "name": "nix:fod:path",
+          "value": "/nix/store/syhxsjlsdqfap0hk4qp3s6kayk8cqknd-source"
+        },
+        {
+          "name": "nix:fod:rev",
+          "value": "4ef3b624db86e331ba334e705c1aa235d55b05e1"
+        },
+        {
+          "name": "nix:fod:sha256",
+          "value": "1q4qgw4an4mmmcbx48l6xk1jig1vc8p9cq9dbx39kpnb0890j32q"
+        },
+        {
+          "name": "nix:fod:url",
+          "value": "https://github.com/ehmry/nim-sys/archive/4ef3b624db86e331ba334e705c1aa235d55b05e1.tar.gz"
+        },
+        {
+          "name": "nix:fod:srcDir",
+          "value": "src"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nim/cps",
+      "name": "cps",
+      "version": "0.10.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/nim-works/cps/archive/2a4d771a715ba45cfba3a82fa625ae7ad6591c8b.tar.gz",
+          "type": "source-distribution"
+        },
+        {
+          "url": "https://github.com/nim-works/cps",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "nix:fod:method",
+          "value": "fetchzip"
+        },
+        {
+          "name": "nix:fod:path",
+          "value": "/nix/store/m9vpcf3dq6z2h1xpi1vlw0ycxp91s5p7-source"
+        },
+        {
+          "name": "nix:fod:rev",
+          "value": "2a4d771a715ba45cfba3a82fa625ae7ad6591c8b"
+        },
+        {
+          "name": "nix:fod:sha256",
+          "value": "0c62k5wpq9z9mn8cd4rm8jjc4z0xmnak4piyj5dsfbyj6sbdw2bf"
+        },
+        {
+          "name": "nix:fod:url",
+          "value": "https://github.com/nim-works/cps/archive/2a4d771a715ba45cfba3a82fa625ae7ad6591c8b.tar.gz"
+        },
+        {
+          "name": "nix:fod:ref",
+          "value": "0.10.4"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:nim/stew",
+      "name": "stew",
+      "version": "3c91b8694e15137a81ec7db37c6c58194ec94a6a",
+      "externalReferences": [
+        {
+          "url": "https://github.com/status-im/nim-stew/archive/3c91b8694e15137a81ec7db37c6c58194ec94a6a.tar.gz",
+          "type": "source-distribution"
+        },
+        {
+          "url": "https://github.com/status-im/nim-stew",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "nix:fod:method",
+          "value": "fetchzip"
+        },
+        {
+          "name": "nix:fod:path",
+          "value": "/nix/store/mqg8qzsbcc8xqabq2yzvlhvcyqypk72c-source"
+        },
+        {
+          "name": "nix:fod:rev",
+          "value": "3c91b8694e15137a81ec7db37c6c58194ec94a6a"
+        },
+        {
+          "name": "nix:fod:sha256",
+          "value": "17lfhfxp5nxvld78xa83p258y80ks5jb4n53152cdr57xk86y07w"
+        },
+        {
+          "name": "nix:fod:url",
+          "value": "https://github.com/status-im/nim-stew/archive/3c91b8694e15137a81ec7db37c6c58194ec94a6a.tar.gz"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:nim/wayland",
+      "dependsOn": [
+        "pkg:nim/sys"
+      ]
+    },
+    {
+      "ref": "pkg:nim/nim-sys",
+      "dependsOn": [
+        "pkg:nim/cps",
+        "pkg:nim/nim-stew"
+      ]
+    },
+    {
+      "ref": "pkg:nim/cps",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:nim/stew",
+      "dependsOn": []
+    }
+  ]
+}

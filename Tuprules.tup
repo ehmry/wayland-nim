@@ -1,0 +1,6 @@
+include ../syndicate-nim/depends.tup
+PROJECT_DIR = $(TUP_CWD)
+
+NIM = $(DIRENV) $(NIM)
+NIM_GROUPS += $(PROJECT_DIR)/<lock>
+NIM_GROUPS += $(PROJECT_DIR)/src/wayland/<protocol>
