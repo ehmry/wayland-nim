@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 import
-  pkg / wayland / objects
+  pkg / wayland / clients
 
 type
   Wl_display_opcode* = enum
@@ -77,10 +77,10 @@ type
     Destroy, Set_position, Place_above, Place_below, Set_sync, Set_desync
   Wl_subsurface* = ref object of Wl_object
 proc `sync`*(obj: Wl_display; `callback`: Wl_callback) =
-  request(obj, Sync.uint32, (`callback`,))
+  request(obj, Sync.uint16, (`callback`,))
 
 proc `get_registry`*(obj: Wl_display; `registry`: Wl_registry) =
-  request(obj, Get_registry.uint32, (`registry`,))
+  request(obj, Get_registry.uint16, (`registry`,))
 
 method `error`*(obj: Wl_display; `object_id`: Oid; `code`: uint;
                 `message`: string) {.base.} =
@@ -90,7 +90,7 @@ method `delete_id`*(obj: Wl_display; `id`: uint) {.base.} =
   discard
 
 proc `bind`*(obj: Wl_registry; `name`: uint; `id`: Oid) =
-  request(obj, Bind.uint32, (`name`, `id`))
+  request(obj, Bind.uint16, (`name`, `id`))
 
 method `global`*(obj: Wl_registry; `name`: uint; `interface`: string;
                  `version`: uint) {.base.} =
@@ -103,55 +103,55 @@ method `done`*(obj: Wl_callback; `callback_data`: uint) {.base.} =
   discard
 
 proc `create_surface`*(obj: Wl_compositor; `id`: Wl_surface) =
-  request(obj, Create_surface.uint32, (`id`,))
+  request(obj, Create_surface.uint16, (`id`,))
 
 proc `create_region`*(obj: Wl_compositor; `id`: Wl_region) =
-  request(obj, Create_region.uint32, (`id`,))
+  request(obj, Create_region.uint16, (`id`,))
 
 proc `create_buffer`*(obj: Wl_shm_pool; `id`: Wl_buffer; `offset`: int;
                       `width`: int; `height`: int; `stride`: int; `format`: uint) =
-  request(obj, Create_buffer.uint32,
+  request(obj, Create_buffer.uint16,
           (`id`, `offset`, `width`, `height`, `stride`, `format`))
 
 proc `destroy`*(obj: Wl_shm_pool) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 proc `resize`*(obj: Wl_shm_pool; `size`: int) =
-  request(obj, Resize.uint32, (`size`,))
+  request(obj, Resize.uint16, (`size`,))
 
 proc `create_pool`*(obj: Wl_shm; `id`: Wl_shm_pool; `fd`: cint; `size`: int) =
-  request(obj, Create_pool.uint32, (`id`, `fd`, `size`))
+  request(obj, Create_pool.uint16, (`id`, `fd`, `size`))
 
 method `format`*(obj: Wl_shm; `format`: uint) {.base.} =
   discard
 
 proc `release`*(obj: Wl_shm) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 proc `destroy`*(obj: Wl_buffer) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 method `release`*(obj: Wl_buffer) {.base.} =
   discard
 
 proc `accept`*(obj: Wl_data_offer; `serial`: uint; `mime_type`: string) =
-  request(obj, Accept.uint32, (`serial`, `mime_type`))
+  request(obj, Accept.uint16, (`serial`, `mime_type`))
 
 proc `receive`*(obj: Wl_data_offer; `mime_type`: string; `fd`: cint) =
-  request(obj, Receive.uint32, (`mime_type`, `fd`))
+  request(obj, Receive.uint16, (`mime_type`, `fd`))
 
 proc `destroy`*(obj: Wl_data_offer) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 method `offer`*(obj: Wl_data_offer; `mime_type`: string) {.base.} =
   discard
 
 proc `finish`*(obj: Wl_data_offer) =
-  request(obj, Finish.uint32)
+  request(obj, Finish.uint16, ())
 
 proc `set_actions`*(obj: Wl_data_offer; `dnd_actions`: uint;
                     `preferred_action`: uint) =
-  request(obj, Set_actions.uint32, (`dnd_actions`, `preferred_action`))
+  request(obj, Set_actions.uint16, (`dnd_actions`, `preferred_action`))
 
 method `source_actions`*(obj: Wl_data_offer; `source_actions`: uint) {.base.} =
   discard
@@ -160,10 +160,10 @@ method `action`*(obj: Wl_data_offer; `dnd_action`: uint) {.base.} =
   discard
 
 proc `offer`*(obj: Wl_data_source; `mime_type`: string) =
-  request(obj, Offer.uint32, (`mime_type`,))
+  request(obj, Offer.uint16, (`mime_type`,))
 
 proc `destroy`*(obj: Wl_data_source) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 method `target`*(obj: Wl_data_source; `mime_type`: string) {.base.} =
   discard
@@ -175,7 +175,7 @@ method `cancelled`*(obj: Wl_data_source) {.base.} =
   discard
 
 proc `set_actions`*(obj: Wl_data_source; `dnd_actions`: uint) =
-  request(obj, Set_actions.uint32, (`dnd_actions`,))
+  request(obj, Set_actions.uint16, (`dnd_actions`,))
 
 method `dnd_drop_performed`*(obj: Wl_data_source) {.base.} =
   discard
@@ -188,11 +188,11 @@ method `action`*(obj: Wl_data_source; `dnd_action`: uint) {.base.} =
 
 proc `start_drag`*(obj: Wl_data_device; `source`: Wl_data_source;
                    `origin`: Wl_surface; `icon`: Wl_surface; `serial`: uint) =
-  request(obj, Start_drag.uint32, (`source`, `origin`, `icon`, `serial`))
+  request(obj, Start_drag.uint16, (`source`, `origin`, `icon`, `serial`))
 
 proc `set_selection`*(obj: Wl_data_device; `source`: Wl_data_source;
                       `serial`: uint) =
-  request(obj, Set_selection.uint32, (`source`, `serial`))
+  request(obj, Set_selection.uint16, (`source`, `serial`))
 
 method `data_offer`*(obj: Wl_data_device; `id`: Wl_data_offer) {.base.} =
   discard
@@ -216,53 +216,53 @@ method `selection`*(obj: Wl_data_device; `id`: Wl_data_offer) {.base.} =
   discard
 
 proc `release`*(obj: Wl_data_device) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 proc `create_data_source`*(obj: Wl_data_device_manager; `id`: Wl_data_source) =
-  request(obj, Create_data_source.uint32, (`id`,))
+  request(obj, Create_data_source.uint16, (`id`,))
 
 proc `get_data_device`*(obj: Wl_data_device_manager; `id`: Wl_data_device;
                         `seat`: Wl_seat) =
-  request(obj, Get_data_device.uint32, (`id`, `seat`))
+  request(obj, Get_data_device.uint16, (`id`, `seat`))
 
 proc `get_shell_surface`*(obj: Wl_shell; `id`: Wl_shell_surface;
                           `surface`: Wl_surface) =
-  request(obj, Get_shell_surface.uint32, (`id`, `surface`))
+  request(obj, Get_shell_surface.uint16, (`id`, `surface`))
 
 proc `pong`*(obj: Wl_shell_surface; `serial`: uint) =
-  request(obj, Pong.uint32, (`serial`,))
+  request(obj, Pong.uint16, (`serial`,))
 
 proc `move`*(obj: Wl_shell_surface; `seat`: Wl_seat; `serial`: uint) =
-  request(obj, Move.uint32, (`seat`, `serial`))
+  request(obj, Move.uint16, (`seat`, `serial`))
 
 proc `resize`*(obj: Wl_shell_surface; `seat`: Wl_seat; `serial`: uint;
                `edges`: uint) =
-  request(obj, Resize.uint32, (`seat`, `serial`, `edges`))
+  request(obj, Resize.uint16, (`seat`, `serial`, `edges`))
 
 proc `set_toplevel`*(obj: Wl_shell_surface) =
-  request(obj, Set_toplevel.uint32)
+  request(obj, Set_toplevel.uint16, ())
 
 proc `set_transient`*(obj: Wl_shell_surface; `parent`: Wl_surface; `x`: int;
                       `y`: int; `flags`: uint) =
-  request(obj, Set_transient.uint32, (`parent`, `x`, `y`, `flags`))
+  request(obj, Set_transient.uint16, (`parent`, `x`, `y`, `flags`))
 
 proc `set_fullscreen`*(obj: Wl_shell_surface; `method`: uint; `framerate`: uint;
                        `output`: Wl_output) =
-  request(obj, Set_fullscreen.uint32, (`method`, `framerate`, `output`))
+  request(obj, Set_fullscreen.uint16, (`method`, `framerate`, `output`))
 
 proc `set_popup`*(obj: Wl_shell_surface; `seat`: Wl_seat; `serial`: uint;
                   `parent`: Wl_surface; `x`: int; `y`: int; `flags`: uint) =
-  request(obj, Set_popup.uint32,
+  request(obj, Set_popup.uint16,
           (`seat`, `serial`, `parent`, `x`, `y`, `flags`))
 
 proc `set_maximized`*(obj: Wl_shell_surface; `output`: Wl_output) =
-  request(obj, Set_maximized.uint32, (`output`,))
+  request(obj, Set_maximized.uint16, (`output`,))
 
 proc `set_title`*(obj: Wl_shell_surface; `title`: string) =
-  request(obj, Set_title.uint32, (`title`,))
+  request(obj, Set_title.uint16, (`title`,))
 
 proc `set_class`*(obj: Wl_shell_surface; `class`: string) =
-  request(obj, Set_class.uint32, (`class`,))
+  request(obj, Set_class.uint16, (`class`,))
 
 method `ping`*(obj: Wl_shell_surface; `serial`: uint) {.base.} =
   discard
@@ -275,25 +275,25 @@ method `popup_done`*(obj: Wl_shell_surface) {.base.} =
   discard
 
 proc `destroy`*(obj: Wl_surface) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 proc `attach`*(obj: Wl_surface; `buffer`: Wl_buffer; `x`: int; `y`: int) =
-  request(obj, Attach.uint32, (`buffer`, `x`, `y`))
+  request(obj, Attach.uint16, (`buffer`, `x`, `y`))
 
 proc `damage`*(obj: Wl_surface; `x`: int; `y`: int; `width`: int; `height`: int) =
-  request(obj, Damage.uint32, (`x`, `y`, `width`, `height`))
+  request(obj, Damage.uint16, (`x`, `y`, `width`, `height`))
 
 proc `frame`*(obj: Wl_surface; `callback`: Wl_callback) =
-  request(obj, Frame.uint32, (`callback`,))
+  request(obj, Frame.uint16, (`callback`,))
 
 proc `set_opaque_region`*(obj: Wl_surface; `region`: Wl_region) =
-  request(obj, Set_opaque_region.uint32, (`region`,))
+  request(obj, Set_opaque_region.uint16, (`region`,))
 
 proc `set_input_region`*(obj: Wl_surface; `region`: Wl_region) =
-  request(obj, Set_input_region.uint32, (`region`,))
+  request(obj, Set_input_region.uint16, (`region`,))
 
 proc `commit`*(obj: Wl_surface) =
-  request(obj, Commit.uint32)
+  request(obj, Commit.uint16, ())
 
 method `enter`*(obj: Wl_surface; `output`: Wl_output) {.base.} =
   discard
@@ -302,17 +302,17 @@ method `leave`*(obj: Wl_surface; `output`: Wl_output) {.base.} =
   discard
 
 proc `set_buffer_transform`*(obj: Wl_surface; `transform`: int) =
-  request(obj, Set_buffer_transform.uint32, (`transform`,))
+  request(obj, Set_buffer_transform.uint16, (`transform`,))
 
 proc `set_buffer_scale`*(obj: Wl_surface; `scale`: int) =
-  request(obj, Set_buffer_scale.uint32, (`scale`,))
+  request(obj, Set_buffer_scale.uint16, (`scale`,))
 
 proc `damage_buffer`*(obj: Wl_surface; `x`: int; `y`: int; `width`: int;
                       `height`: int) =
-  request(obj, Damage_buffer.uint32, (`x`, `y`, `width`, `height`))
+  request(obj, Damage_buffer.uint16, (`x`, `y`, `width`, `height`))
 
 proc `offset`*(obj: Wl_surface; `x`: int; `y`: int) =
-  request(obj, Offset.uint32, (`x`, `y`))
+  request(obj, Offset.uint16, (`x`, `y`))
 
 method `preferred_buffer_scale`*(obj: Wl_surface; `factor`: int) {.base.} =
   discard
@@ -324,23 +324,23 @@ method `capabilities`*(obj: Wl_seat; `capabilities`: uint) {.base.} =
   discard
 
 proc `get_pointer`*(obj: Wl_seat; `id`: Wl_pointer) =
-  request(obj, Get_pointer.uint32, (`id`,))
+  request(obj, Get_pointer.uint16, (`id`,))
 
 proc `get_keyboard`*(obj: Wl_seat; `id`: Wl_keyboard) =
-  request(obj, Get_keyboard.uint32, (`id`,))
+  request(obj, Get_keyboard.uint16, (`id`,))
 
 proc `get_touch`*(obj: Wl_seat; `id`: Wl_touch) =
-  request(obj, Get_touch.uint32, (`id`,))
+  request(obj, Get_touch.uint16, (`id`,))
 
 method `name`*(obj: Wl_seat; `name`: string) {.base.} =
   discard
 
 proc `release`*(obj: Wl_seat) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 proc `set_cursor`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface;
                    `hotspot_x`: int; `hotspot_y`: int) =
-  request(obj, Set_cursor.uint32,
+  request(obj, Set_cursor.uint16,
           (`serial`, `surface`, `hotspot_x`, `hotspot_y`))
 
 method `enter`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface;
@@ -363,7 +363,7 @@ method `axis`*(obj: Wl_pointer; `time`: uint; `axis`: uint;
   discard
 
 proc `release`*(obj: Wl_pointer) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 method `frame`*(obj: Wl_pointer) {.base.} =
   discard
@@ -405,7 +405,7 @@ method `modifiers`*(obj: Wl_keyboard; `serial`: uint; `mods_depressed`: uint;
   discard
 
 proc `release`*(obj: Wl_keyboard) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 method `repeat_info`*(obj: Wl_keyboard; `rate`: int; `delay`: int) {.base.} =
   discard
@@ -429,7 +429,7 @@ method `cancel`*(obj: Wl_touch) {.base.} =
   discard
 
 proc `release`*(obj: Wl_touch) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 method `shape`*(obj: Wl_touch; `id`: int; `major`: SignedDecimal;
                 `minor`: SignedDecimal) {.base.} =
@@ -455,7 +455,7 @@ method `scale`*(obj: Wl_output; `factor`: int) {.base.} =
   discard
 
 proc `release`*(obj: Wl_output) =
-  request(obj, Release.uint32)
+  request(obj, Release.uint16, ())
 
 method `name`*(obj: Wl_output; `name`: string) {.base.} =
   discard
@@ -464,35 +464,35 @@ method `description`*(obj: Wl_output; `description`: string) {.base.} =
   discard
 
 proc `destroy`*(obj: Wl_region) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 proc `add`*(obj: Wl_region; `x`: int; `y`: int; `width`: int; `height`: int) =
-  request(obj, Add.uint32, (`x`, `y`, `width`, `height`))
+  request(obj, Add.uint16, (`x`, `y`, `width`, `height`))
 
 proc `subtract`*(obj: Wl_region; `x`: int; `y`: int; `width`: int; `height`: int) =
-  request(obj, Subtract.uint32, (`x`, `y`, `width`, `height`))
+  request(obj, Subtract.uint16, (`x`, `y`, `width`, `height`))
 
 proc `destroy`*(obj: Wl_subcompositor) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 proc `get_subsurface`*(obj: Wl_subcompositor; `id`: Wl_subsurface;
                        `surface`: Wl_surface; `parent`: Wl_surface) =
-  request(obj, Get_subsurface.uint32, (`id`, `surface`, `parent`))
+  request(obj, Get_subsurface.uint16, (`id`, `surface`, `parent`))
 
 proc `destroy`*(obj: Wl_subsurface) =
-  request(obj, Destroy.uint32)
+  request(obj, Destroy.uint16, ())
 
 proc `set_position`*(obj: Wl_subsurface; `x`: int; `y`: int) =
-  request(obj, Set_position.uint32, (`x`, `y`))
+  request(obj, Set_position.uint16, (`x`, `y`))
 
 proc `place_above`*(obj: Wl_subsurface; `sibling`: Wl_surface) =
-  request(obj, Place_above.uint32, (`sibling`,))
+  request(obj, Place_above.uint16, (`sibling`,))
 
 proc `place_below`*(obj: Wl_subsurface; `sibling`: Wl_surface) =
-  request(obj, Place_below.uint32, (`sibling`,))
+  request(obj, Place_below.uint16, (`sibling`,))
 
 proc `set_sync`*(obj: Wl_subsurface) =
-  request(obj, Set_sync.uint32)
+  request(obj, Set_sync.uint16, ())
 
 proc `set_desync`*(obj: Wl_subsurface) =
-  request(obj, Set_desync.uint32)
+  request(obj, Set_desync.uint16, ())

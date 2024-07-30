@@ -10,5 +10,5 @@ NIM_GROUPS = $(PROJECT_DIR)/<lock>
 : codegenerator.nim |> !nim |> {codegen}
 : {codegen} |> ./codegenerator < @(WAYLAND_XML) > %o |> globals.nim | ./<protocol> {protocol}
 
-NIM_FLAGS += --path:../
-: foreach {protocol} |> !nim_check |> | ./<protocol>
+# NIM_FLAGS += --path:../
+# : foreach {protocol} |> !nim_check |> | ./<protocol>

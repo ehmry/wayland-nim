@@ -7,7 +7,7 @@
       "bom-ref": "pkg:nim/wayland",
       "name": "wayland",
       "description": "Nim native Wayland client",
-      "version": "20240729",
+      "version": "20240730",
       "authors": [
         {
           "name": "Emery Hemingway"
