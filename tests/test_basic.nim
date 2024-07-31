@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: MIT
 
 import
-  pkg / balls, pkg / sys / ioqueue, pkg / wayland
+  pkg / sys / ioqueue, pkg / wayland
 
-suite "basic":
+block:
   let wl = wayland.newClient()
   let path = wayland.socketPath()
   echo "connect to ", path
