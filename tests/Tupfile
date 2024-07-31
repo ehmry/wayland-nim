@@ -3,5 +3,4 @@ include_rules
 export WAYLAND_DISPLAY
 export XDG_RUNTIME_DIR
 
-# : foreach t*.nim |> !balls |>
-: foreach t*.nim |> !nim |>
+: foreach t*.nim |> !balls |>

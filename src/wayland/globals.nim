@@ -6,11 +6,11 @@ import
 const
   wl_display_sync* = 0
   wl_display_get_registry* = 1
-  wl_display_error* = 2
-  wl_display_delete_id* = 3
+  wl_display_error* = 0
+  wl_display_delete_id* = 1
   wl_registry_bind* = 0
-  wl_registry_global* = 1
-  wl_registry_global_remove* = 2
+  wl_registry_global* = 0
+  wl_registry_global_remove* = 1
   wl_callback_done* = 0
   wl_compositor_create_surface* = 0
   wl_compositor_create_region* = 1
@@ -18,36 +18,36 @@ const
   wl_shm_pool_destroy* = 1
   wl_shm_pool_resize* = 2
   wl_shm_create_pool* = 0
-  wl_shm_format* = 1
-  wl_shm_release* = 2
+  wl_shm_format* = 0
+  wl_shm_release* = 1
   wl_buffer_destroy* = 0
-  wl_buffer_release* = 1
+  wl_buffer_release* = 0
   wl_data_offer_accept* = 0
   wl_data_offer_receive* = 1
   wl_data_offer_destroy* = 2
-  wl_data_offer_offer* = 3
-  wl_data_offer_finish* = 4
-  wl_data_offer_set_actions* = 5
-  wl_data_offer_source_actions* = 6
-  wl_data_offer_action* = 7
+  wl_data_offer_offer* = 0
+  wl_data_offer_finish* = 3
+  wl_data_offer_set_actions* = 4
+  wl_data_offer_source_actions* = 1
+  wl_data_offer_action* = 2
   wl_data_source_offer* = 0
   wl_data_source_destroy* = 1
-  wl_data_source_target* = 2
-  wl_data_source_send* = 3
-  wl_data_source_cancelled* = 4
-  wl_data_source_set_actions* = 5
-  wl_data_source_dnd_drop_performed* = 6
-  wl_data_source_dnd_finished* = 7
-  wl_data_source_action* = 8
+  wl_data_source_target* = 0
+  wl_data_source_send* = 1
+  wl_data_source_cancelled* = 2
+  wl_data_source_set_actions* = 2
+  wl_data_source_dnd_drop_performed* = 3
+  wl_data_source_dnd_finished* = 4
+  wl_data_source_action* = 5
   wl_data_device_start_drag* = 0
   wl_data_device_set_selection* = 1
-  wl_data_device_data_offer* = 2
-  wl_data_device_enter* = 3
-  wl_data_device_leave* = 4
-  wl_data_device_motion* = 5
-  wl_data_device_drop* = 6
-  wl_data_device_selection* = 7
-  wl_data_device_release* = 8
+  wl_data_device_data_offer* = 0
+  wl_data_device_enter* = 1
+  wl_data_device_leave* = 2
+  wl_data_device_motion* = 3
+  wl_data_device_drop* = 4
+  wl_data_device_selection* = 5
+  wl_data_device_release* = 2
   wl_data_device_manager_create_data_source* = 0
   wl_data_device_manager_get_data_device* = 1
   wl_shell_get_shell_surface* = 0
@@ -61,9 +61,9 @@ const
   wl_shell_surface_set_maximized* = 7
   wl_shell_surface_set_title* = 8
   wl_shell_surface_set_class* = 9
-  wl_shell_surface_ping* = 10
-  wl_shell_surface_configure* = 11
-  wl_shell_surface_popup_done* = 12
+  wl_shell_surface_ping* = 0
+  wl_shell_surface_configure* = 1
+  wl_shell_surface_popup_done* = 2
   wl_surface_destroy* = 0
   wl_surface_attach* = 1
   wl_surface_damage* = 2
@@ -71,55 +71,55 @@ const
   wl_surface_set_opaque_region* = 4
   wl_surface_set_input_region* = 5
   wl_surface_commit* = 6
-  wl_surface_enter* = 7
-  wl_surface_leave* = 8
-  wl_surface_set_buffer_transform* = 9
-  wl_surface_set_buffer_scale* = 10
-  wl_surface_damage_buffer* = 11
-  wl_surface_offset* = 12
-  wl_surface_preferred_buffer_scale* = 13
-  wl_surface_preferred_buffer_transform* = 14
+  wl_surface_enter* = 0
+  wl_surface_leave* = 1
+  wl_surface_set_buffer_transform* = 7
+  wl_surface_set_buffer_scale* = 8
+  wl_surface_damage_buffer* = 9
+  wl_surface_offset* = 10
+  wl_surface_preferred_buffer_scale* = 2
+  wl_surface_preferred_buffer_transform* = 3
   wl_seat_capabilities* = 0
-  wl_seat_get_pointer* = 1
-  wl_seat_get_keyboard* = 2
-  wl_seat_get_touch* = 3
-  wl_seat_name* = 4
-  wl_seat_release* = 5
+  wl_seat_get_pointer* = 0
+  wl_seat_get_keyboard* = 1
+  wl_seat_get_touch* = 2
+  wl_seat_name* = 1
+  wl_seat_release* = 3
   wl_pointer_set_cursor* = 0
-  wl_pointer_enter* = 1
-  wl_pointer_leave* = 2
-  wl_pointer_motion* = 3
-  wl_pointer_button* = 4
-  wl_pointer_axis* = 5
-  wl_pointer_release* = 6
-  wl_pointer_frame* = 7
-  wl_pointer_axis_source* = 8
-  wl_pointer_axis_stop* = 9
-  wl_pointer_axis_discrete* = 10
-  wl_pointer_axis_value120* = 11
-  wl_pointer_axis_relative_direction* = 12
+  wl_pointer_enter* = 0
+  wl_pointer_leave* = 1
+  wl_pointer_motion* = 2
+  wl_pointer_button* = 3
+  wl_pointer_axis* = 4
+  wl_pointer_release* = 1
+  wl_pointer_frame* = 5
+  wl_pointer_axis_source* = 6
+  wl_pointer_axis_stop* = 7
+  wl_pointer_axis_discrete* = 8
+  wl_pointer_axis_value120* = 9
+  wl_pointer_axis_relative_direction* = 10
   wl_keyboard_keymap* = 0
   wl_keyboard_enter* = 1
   wl_keyboard_leave* = 2
   wl_keyboard_key* = 3
   wl_keyboard_modifiers* = 4
-  wl_keyboard_release* = 5
-  wl_keyboard_repeat_info* = 6
+  wl_keyboard_release* = 0
+  wl_keyboard_repeat_info* = 5
   wl_touch_down* = 0
   wl_touch_up* = 1
   wl_touch_motion* = 2
   wl_touch_frame* = 3
   wl_touch_cancel* = 4
-  wl_touch_release* = 5
-  wl_touch_shape* = 6
-  wl_touch_orientation* = 7
+  wl_touch_release* = 0
+  wl_touch_shape* = 5
+  wl_touch_orientation* = 6
   wl_output_geometry* = 0
   wl_output_mode* = 1
   wl_output_done* = 2
   wl_output_scale* = 3
-  wl_output_release* = 4
-  wl_output_name* = 5
-  wl_output_description* = 6
+  wl_output_release* = 0
+  wl_output_name* = 4
+  wl_output_description* = 5
   wl_region_destroy* = 0
   wl_region_add* = 1
   wl_region_subtract* = 2
@@ -162,10 +162,10 @@ proc `get_registry`*(obj: Wl_display; `registry`: Wl_registry) =
 
 method `error`*(obj: Wl_display; `object_id`: Oid; `code`: uint;
                 `message`: string) {.base.} =
-  discard
+  raiseAssert("wl_display.error not implemented")
 
 method `delete_id`*(obj: Wl_display; `id`: uint) {.base.} =
-  discard
+  raiseAssert("wl_display.delete_id not implemented")
 
 method dispatchEvent*(obj: Wl_display; msg: Message) =
   case msg.opcode
@@ -185,10 +185,10 @@ proc `bind`*(obj: Wl_registry; `name`: uint; `id`: Oid) =
 
 method `global`*(obj: Wl_registry; `name`: uint; `interface`: string;
                  `version`: uint) {.base.} =
-  discard
+  raiseAssert("wl_registry.global not implemented")
 
 method `global_remove`*(obj: Wl_registry; `name`: uint) {.base.} =
-  discard
+  raiseAssert("wl_registry.global_remove not implemented")
 
 method dispatchEvent*(obj: Wl_registry; msg: Message) =
   case msg.opcode
@@ -204,7 +204,7 @@ method dispatchEvent*(obj: Wl_registry; msg: Message) =
     raise newUnknownEventError("wl_registry", msg.opcode)
 
 method `done`*(obj: Wl_callback; `callback_data`: uint) {.base.} =
-  discard
+  raiseAssert("wl_callback.done not implemented")
 
 method dispatchEvent*(obj: Wl_callback; msg: Message) =
   case msg.opcode
@@ -236,7 +236,7 @@ proc `create_pool`*(obj: Wl_shm; `id`: Wl_shm_pool; `fd`: cint; `size`: int) =
   request(obj, wl_shm_create_pool, (`id`, `fd`, `size`))
 
 method `format`*(obj: Wl_shm; `format`: uint) {.base.} =
-  discard
+  raiseAssert("wl_shm.format not implemented")
 
 proc `release`*(obj: Wl_shm) =
   request(obj, wl_shm_release, ())
@@ -254,7 +254,7 @@ proc `destroy`*(obj: Wl_buffer) =
   request(obj, wl_buffer_destroy, ())
 
 method `release`*(obj: Wl_buffer) {.base.} =
-  discard
+  raiseAssert("wl_buffer.release not implemented")
 
 method dispatchEvent*(obj: Wl_buffer; msg: Message) =
   case msg.opcode
@@ -273,7 +273,7 @@ proc `destroy`*(obj: Wl_data_offer) =
   request(obj, wl_data_offer_destroy, ())
 
 method `offer`*(obj: Wl_data_offer; `mime_type`: string) {.base.} =
-  discard
+  raiseAssert("wl_data_offer.offer not implemented")
 
 proc `finish`*(obj: Wl_data_offer) =
   request(obj, wl_data_offer_finish, ())
@@ -283,10 +283,10 @@ proc `set_actions`*(obj: Wl_data_offer; `dnd_actions`: uint;
   request(obj, wl_data_offer_set_actions, (`dnd_actions`, `preferred_action`))
 
 method `source_actions`*(obj: Wl_data_offer; `source_actions`: uint) {.base.} =
-  discard
+  raiseAssert("wl_data_offer.source_actions not implemented")
 
 method `action`*(obj: Wl_data_offer; `dnd_action`: uint) {.base.} =
-  discard
+  raiseAssert("wl_data_offer.action not implemented")
 
 method dispatchEvent*(obj: Wl_data_offer; msg: Message) =
   case msg.opcode
@@ -312,25 +312,25 @@ proc `destroy`*(obj: Wl_data_source) =
   request(obj, wl_data_source_destroy, ())
 
 method `target`*(obj: Wl_data_source; `mime_type`: string) {.base.} =
-  discard
+  raiseAssert("wl_data_source.target not implemented")
 
 method `send`*(obj: Wl_data_source; `mime_type`: string; `fd`: cint) {.base.} =
-  discard
+  raiseAssert("wl_data_source.send not implemented")
 
 method `cancelled`*(obj: Wl_data_source) {.base.} =
-  discard
+  raiseAssert("wl_data_source.cancelled not implemented")
 
 proc `set_actions`*(obj: Wl_data_source; `dnd_actions`: uint) =
   request(obj, wl_data_source_set_actions, (`dnd_actions`,))
 
 method `dnd_drop_performed`*(obj: Wl_data_source) {.base.} =
-  discard
+  raiseAssert("wl_data_source.dnd_drop_performed not implemented")
 
 method `dnd_finished`*(obj: Wl_data_source) {.base.} =
-  discard
+  raiseAssert("wl_data_source.dnd_finished not implemented")
 
 method `action`*(obj: Wl_data_source; `dnd_action`: uint) {.base.} =
-  discard
+  raiseAssert("wl_data_source.action not implemented")
 
 method dispatchEvent*(obj: Wl_data_source; msg: Message) =
   case msg.opcode
@@ -365,25 +365,25 @@ proc `set_selection`*(obj: Wl_data_device; `source`: Wl_data_source;
   request(obj, wl_data_device_set_selection, (`source`, `serial`))
 
 method `data_offer`*(obj: Wl_data_device; `id`: Wl_data_offer) {.base.} =
-  discard
+  raiseAssert("wl_data_device.data_offer not implemented")
 
 method `enter`*(obj: Wl_data_device; `serial`: uint; `surface`: Wl_surface;
                 `x`: SignedDecimal; `y`: SignedDecimal; `id`: Wl_data_offer) {.
     base.} =
-  discard
+  raiseAssert("wl_data_device.enter not implemented")
 
 method `leave`*(obj: Wl_data_device) {.base.} =
-  discard
+  raiseAssert("wl_data_device.leave not implemented")
 
 method `motion`*(obj: Wl_data_device; `time`: uint; `x`: SignedDecimal;
                  `y`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_data_device.motion not implemented")
 
 method `drop`*(obj: Wl_data_device) {.base.} =
-  discard
+  raiseAssert("wl_data_device.drop not implemented")
 
 method `selection`*(obj: Wl_data_device; `id`: Wl_data_offer) {.base.} =
-  discard
+  raiseAssert("wl_data_device.selection not implemented")
 
 proc `release`*(obj: Wl_data_device) =
   request(obj, wl_data_device_release, ())
@@ -461,14 +461,14 @@ proc `set_class`*(obj: Wl_shell_surface; `class`: string) =
   request(obj, wl_shell_surface_set_class, (`class`,))
 
 method `ping`*(obj: Wl_shell_surface; `serial`: uint) {.base.} =
-  discard
+  raiseAssert("wl_shell_surface.ping not implemented")
 
 method `configure`*(obj: Wl_shell_surface; `edges`: uint; `width`: int;
                     `height`: int) {.base.} =
-  discard
+  raiseAssert("wl_shell_surface.configure not implemented")
 
 method `popup_done`*(obj: Wl_shell_surface) {.base.} =
-  discard
+  raiseAssert("wl_shell_surface.popup_done not implemented")
 
 method dispatchEvent*(obj: Wl_shell_surface; msg: Message) =
   case msg.opcode
@@ -507,10 +507,10 @@ proc `commit`*(obj: Wl_surface) =
   request(obj, wl_surface_commit, ())
 
 method `enter`*(obj: Wl_surface; `output`: Wl_output) {.base.} =
-  discard
+  raiseAssert("wl_surface.enter not implemented")
 
 method `leave`*(obj: Wl_surface; `output`: Wl_output) {.base.} =
-  discard
+  raiseAssert("wl_surface.leave not implemented")
 
 proc `set_buffer_transform`*(obj: Wl_surface; `transform`: int) =
   request(obj, wl_surface_set_buffer_transform, (`transform`,))
@@ -526,10 +526,10 @@ proc `offset`*(obj: Wl_surface; `x`: int; `y`: int) =
   request(obj, wl_surface_offset, (`x`, `y`))
 
 method `preferred_buffer_scale`*(obj: Wl_surface; `factor`: int) {.base.} =
-  discard
+  raiseAssert("wl_surface.preferred_buffer_scale not implemented")
 
 method `preferred_buffer_transform`*(obj: Wl_surface; `transform`: uint) {.base.} =
-  discard
+  raiseAssert("wl_surface.preferred_buffer_transform not implemented")
 
 method dispatchEvent*(obj: Wl_surface; msg: Message) =
   case msg.opcode
@@ -553,7 +553,7 @@ method dispatchEvent*(obj: Wl_surface; msg: Message) =
     raise newUnknownEventError("wl_surface", msg.opcode)
 
 method `capabilities`*(obj: Wl_seat; `capabilities`: uint) {.base.} =
-  discard
+  raiseAssert("wl_seat.capabilities not implemented")
 
 proc `get_pointer`*(obj: Wl_seat; `id`: Wl_pointer) =
   request(obj, wl_seat_get_pointer, (`id`,))
@@ -565,7 +565,7 @@ proc `get_touch`*(obj: Wl_seat; `id`: Wl_touch) =
   request(obj, wl_seat_get_touch, (`id`,))
 
 method `name`*(obj: Wl_seat; `name`: string) {.base.} =
-  discard
+  raiseAssert("wl_seat.name not implemented")
 
 proc `release`*(obj: Wl_seat) =
   request(obj, wl_seat_release, ())
@@ -590,44 +590,44 @@ proc `set_cursor`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface;
 
 method `enter`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface;
                 `surface_x`: SignedDecimal; `surface_y`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_pointer.enter not implemented")
 
 method `leave`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface) {.base.} =
-  discard
+  raiseAssert("wl_pointer.leave not implemented")
 
 method `motion`*(obj: Wl_pointer; `time`: uint; `surface_x`: SignedDecimal;
                  `surface_y`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_pointer.motion not implemented")
 
 method `button`*(obj: Wl_pointer; `serial`: uint; `time`: uint; `button`: uint;
                  `state`: uint) {.base.} =
-  discard
+  raiseAssert("wl_pointer.button not implemented")
 
 method `axis`*(obj: Wl_pointer; `time`: uint; `axis`: uint;
                `value`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_pointer.axis not implemented")
 
 proc `release`*(obj: Wl_pointer) =
   request(obj, wl_pointer_release, ())
 
 method `frame`*(obj: Wl_pointer) {.base.} =
-  discard
+  raiseAssert("wl_pointer.frame not implemented")
 
 method `axis_source`*(obj: Wl_pointer; `axis_source`: uint) {.base.} =
-  discard
+  raiseAssert("wl_pointer.axis_source not implemented")
 
 method `axis_stop`*(obj: Wl_pointer; `time`: uint; `axis`: uint) {.base.} =
-  discard
+  raiseAssert("wl_pointer.axis_stop not implemented")
 
 method `axis_discrete`*(obj: Wl_pointer; `axis`: uint; `discrete`: int) {.base.} =
-  discard
+  raiseAssert("wl_pointer.axis_discrete not implemented")
 
 method `axis_value120`*(obj: Wl_pointer; `axis`: uint; `value120`: int) {.base.} =
-  discard
+  raiseAssert("wl_pointer.axis_value120 not implemented")
 
 method `axis_relative_direction`*(obj: Wl_pointer; `axis`: uint;
                                   `direction`: uint) {.base.} =
-  discard
+  raiseAssert("wl_pointer.axis_relative_direction not implemented")
 
 method dispatchEvent*(obj: Wl_pointer; msg: Message) =
   case msg.opcode
@@ -678,29 +678,29 @@ method dispatchEvent*(obj: Wl_pointer; msg: Message) =
 
 method `keymap`*(obj: Wl_keyboard; `format`: uint; `fd`: cint; `size`: uint) {.
     base.} =
-  discard
+  raiseAssert("wl_keyboard.keymap not implemented")
 
 method `enter`*(obj: Wl_keyboard; `serial`: uint; `surface`: Wl_surface;
                 `keys`: seq[uint32]) {.base.} =
-  discard
+  raiseAssert("wl_keyboard.enter not implemented")
 
 method `leave`*(obj: Wl_keyboard; `serial`: uint; `surface`: Wl_surface) {.base.} =
-  discard
+  raiseAssert("wl_keyboard.leave not implemented")
 
 method `key`*(obj: Wl_keyboard; `serial`: uint; `time`: uint; `key`: uint;
               `state`: uint) {.base.} =
-  discard
+  raiseAssert("wl_keyboard.key not implemented")
 
 method `modifiers`*(obj: Wl_keyboard; `serial`: uint; `mods_depressed`: uint;
                     `mods_latched`: uint; `mods_locked`: uint; `group`: uint) {.
     base.} =
-  discard
+  raiseAssert("wl_keyboard.modifiers not implemented")
 
 proc `release`*(obj: Wl_keyboard) =
   request(obj, wl_keyboard_release, ())
 
 method `repeat_info`*(obj: Wl_keyboard; `rate`: int; `delay`: int) {.base.} =
-  discard
+  raiseAssert("wl_keyboard.repeat_info not implemented")
 
 method dispatchEvent*(obj: Wl_keyboard; msg: Message) =
   case msg.opcode
@@ -734,31 +734,31 @@ method dispatchEvent*(obj: Wl_keyboard; msg: Message) =
 method `down`*(obj: Wl_touch; `serial`: uint; `time`: uint;
                `surface`: Wl_surface; `id`: int; `x`: SignedDecimal;
                `y`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_touch.down not implemented")
 
 method `up`*(obj: Wl_touch; `serial`: uint; `time`: uint; `id`: int) {.base.} =
-  discard
+  raiseAssert("wl_touch.up not implemented")
 
 method `motion`*(obj: Wl_touch; `time`: uint; `id`: int; `x`: SignedDecimal;
                  `y`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_touch.motion not implemented")
 
 method `frame`*(obj: Wl_touch) {.base.} =
-  discard
+  raiseAssert("wl_touch.frame not implemented")
 
 method `cancel`*(obj: Wl_touch) {.base.} =
-  discard
+  raiseAssert("wl_touch.cancel not implemented")
 
 proc `release`*(obj: Wl_touch) =
   request(obj, wl_touch_release, ())
 
 method `shape`*(obj: Wl_touch; `id`: int; `major`: SignedDecimal;
                 `minor`: SignedDecimal) {.base.} =
-  discard
+  raiseAssert("wl_touch.shape not implemented")
 
 method `orientation`*(obj: Wl_touch; `id`: int; `orientation`: SignedDecimal) {.
     base.} =
-  discard
+  raiseAssert("wl_touch.orientation not implemented")
 
 method dispatchEvent*(obj: Wl_touch; msg: Message) =
   case msg.opcode
@@ -792,26 +792,26 @@ method dispatchEvent*(obj: Wl_touch; msg: Message) =
 method `geometry`*(obj: Wl_output; `x`: int; `y`: int; `physical_width`: int;
                    `physical_height`: int; `subpixel`: int; `make`: string;
                    `model`: string; `transform`: int) {.base.} =
-  discard
+  raiseAssert("wl_output.geometry not implemented")
 
 method `mode`*(obj: Wl_output; `flags`: uint; `width`: int; `height`: int;
                `refresh`: int) {.base.} =
-  discard
+  raiseAssert("wl_output.mode not implemented")
 
 method `done`*(obj: Wl_output) {.base.} =
-  discard
+  raiseAssert("wl_output.done not implemented")
 
 method `scale`*(obj: Wl_output; `factor`: int) {.base.} =
-  discard
+  raiseAssert("wl_output.scale not implemented")
 
 proc `release`*(obj: Wl_output) =
   request(obj, wl_output_release, ())
 
 method `name`*(obj: Wl_output; `name`: string) {.base.} =
-  discard
+  raiseAssert("wl_output.name not implemented")
 
 method `description`*(obj: Wl_output; `description`: string) {.base.} =
-  discard
+  raiseAssert("wl_output.description not implemented")
 
 method dispatchEvent*(obj: Wl_output; msg: Message) =
   case msg.opcode
