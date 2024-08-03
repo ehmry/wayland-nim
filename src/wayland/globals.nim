@@ -159,7 +159,7 @@ proc `sync`*(obj: Wl_display; `callback`: Wl_callback) =
 proc `get_registry`*(obj: Wl_display; `registry`: Wl_registry) =
   request(obj, 1, (`registry`,))
 
-method `error`*(obj: Wl_display; `object_id`: Oid; `code`: uint;
+method `error`*(obj: Wl_display; `object_id`: Wl_object; `code`: uint;
                 `message`: string) {.base.} =
   raiseAssert("wl_display.error not implemented")
 
@@ -169,7 +169,7 @@ method `delete_id`*(obj: Wl_display; `id`: uint) {.base.} =
 method dispatchEvent*(obj: Wl_display; msg: Message) =
   case msg.opcode
   of 0:
-    var args: (Oid, uint, string)
+    var args: (Wl_object, uint, string)
     unmarshal(obj, msg, args)
     obj.`error`(args[0], args[1], args[2])
   of 1:
@@ -186,7 +186,7 @@ func version*(obj: Wl_registry): uint =
   1
 
 proc `bind`*(obj: Wl_registry; `name`: uint; `face`: string; `version`: uint;
-             `oid`: Oid) =
+             `oid`: Wl_object) =
   request(obj, 0, (`name`, `face`, `version`, `oid`))
 
 method `global`*(obj: Wl_registry; `name`: uint; `interface`: string;

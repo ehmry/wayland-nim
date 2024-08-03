@@ -23,21 +23,18 @@ method global(reg: Registry; name: uint; face: string; version: uint) =
   case face
   of "wl_compositor":
     assert reg.comp.isNil
-    reg.comp = Compositor(test: reg.test)
-    reg.client.bindObject(reg.comp)
-    reg.bind(name, face, version, reg.comp.oid)
+    var comp = Compositor(test: reg.test)
+    reg.bind(name, face, version, comp)
   of "wl_shm":
-    assert reg.shm.isNil
-    reg.shm = Shm()
-    reg.client.bindObject(reg.shm)
-    reg.bind(name, face, version, reg.shm.oid)
+    var shm = Shm()
+    reg.bind(name, face, version, shm)
   else:
     discard
 
 type
   Display {.final.} = ref object of Wl_display
   
-method error(obj: Display; object_id: Oid; code: uint; message: string) =
+method error(display: Display; obj: Wl_object; code: uint; message: string) =
   raise newException(ProtocolError, message)
 
 block:
