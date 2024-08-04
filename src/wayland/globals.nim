@@ -262,7 +262,7 @@ func face*(obj: Wl_shm): string =
 func version*(obj: Wl_shm): uint =
   2
 
-proc `create_pool`*(obj: Wl_shm; `id`: Wl_shm_pool; `fd`: cint; `size`: int) =
+proc `create_pool`*(obj: Wl_shm; `id`: Wl_shm_pool; `fd`: FD; `size`: int) =
   request(obj, 0, (`id`, `fd`, `size`))
 
 method `format`*(obj: Wl_shm; `format`: Wl_shm_format) {.base.} =
@@ -308,7 +308,7 @@ func version*(obj: Wl_data_offer): uint =
 proc `accept`*(obj: Wl_data_offer; `serial`: uint; `mime_type`: string) =
   request(obj, 0, (`serial`, `mime_type`))
 
-proc `receive`*(obj: Wl_data_offer; `mime_type`: string; `fd`: cint) =
+proc `receive`*(obj: Wl_data_offer; `mime_type`: string; `fd`: FD) =
   request(obj, 1, (`mime_type`, `fd`))
 
 proc `destroy`*(obj: Wl_data_offer) =
@@ -366,7 +366,7 @@ proc `destroy`*(obj: Wl_data_source) =
 method `target`*(obj: Wl_data_source; `mime_type`: string) {.base.} =
   raiseAssert("wl_data_source.target not implemented")
 
-method `send`*(obj: Wl_data_source; `mime_type`: string; `fd`: cint) {.base.} =
+method `send`*(obj: Wl_data_source; `mime_type`: string; `fd`: FD) {.base.} =
   raiseAssert("wl_data_source.send not implemented")
 
 method `cancelled`*(obj: Wl_data_source) {.base.} =
@@ -393,7 +393,7 @@ method dispatchEvent*(obj: Wl_data_source; msg: Message) =
     unmarshal(obj, msg, args)
     obj.`target`(args[0])
   of 1:
-    var args: (string, cint)
+    var args: (string, FD)
     unmarshal(obj, msg, args)
     obj.`send`(args[0], args[1])
   of 2:
@@ -782,7 +782,7 @@ func version*(obj: Wl_keyboard): uint =
   9
 
 method `keymap`*(obj: Wl_keyboard; `format`: Wl_keyboard_keymap_format;
-                 `fd`: cint; `size`: uint) {.base.} =
+                 `fd`: FD; `size`: uint) {.base.} =
   raiseAssert("wl_keyboard.keymap not implemented")
 
 method `enter`*(obj: Wl_keyboard; `serial`: uint; `surface`: Wl_surface;
@@ -810,7 +810,7 @@ method `repeat_info`*(obj: Wl_keyboard; `rate`: int; `delay`: int) {.base.} =
 method dispatchEvent*(obj: Wl_keyboard; msg: Message) =
   case msg.opcode
   of 0:
-    var args: (Wl_keyboard_keymap_format, cint, uint)
+    var args: (Wl_keyboard_keymap_format, FD, uint)
     unmarshal(obj, msg, args)
     obj.`keymap`(args[0], args[1], args[2])
   of 1:
