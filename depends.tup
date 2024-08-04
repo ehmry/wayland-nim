@@ -1,0 +1,4 @@
+NIM_FLAGS += --path:$(TUP_CWD)/src
+NIM_LOCK_EXCLUDES += "wayland"
+NIM_GROUPS += $(TUP_CWD)/<lock>
+NIM_GROUPS += $(TUP_CWD)/src/wayland/<protocol>
