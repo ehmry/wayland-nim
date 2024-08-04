@@ -161,10 +161,10 @@ proc `get_registry`*(obj: Wl_display; `registry`: Wl_registry) =
 
 method `error`*(obj: Wl_display; `object_id`: Wl_object; `code`: uint;
                 `message`: string) {.base.} =
-  raiseAssert("wl_display.error not implemented")
+  eventNotImplemented("wl_display.error")
 
 method `delete_id`*(obj: Wl_display; `id`: uint) {.base.} =
-  raiseAssert("wl_display.delete_id not implemented")
+  eventNotImplemented("wl_display.delete_id")
 
 method dispatchEvent*(obj: Wl_display; msg: Message) =
   case msg.opcode
@@ -191,10 +191,10 @@ proc `bind`*(obj: Wl_registry; `name`: uint; `face`: string; `version`: uint;
 
 method `global`*(obj: Wl_registry; `name`: uint; `interface`: string;
                  `version`: uint) {.base.} =
-  raiseAssert("wl_registry.global not implemented")
+  eventNotImplemented("wl_registry.global")
 
 method `global_remove`*(obj: Wl_registry; `name`: uint) {.base.} =
-  raiseAssert("wl_registry.global_remove not implemented")
+  eventNotImplemented("wl_registry.global_remove")
 
 method dispatchEvent*(obj: Wl_registry; msg: Message) =
   case msg.opcode
@@ -216,7 +216,7 @@ func version*(obj: Wl_callback): uint =
   1
 
 method `done`*(obj: Wl_callback; `callback_data`: uint) {.base.} =
-  raiseAssert("wl_callback.done not implemented")
+  eventNotImplemented("wl_callback.done")
 
 method dispatchEvent*(obj: Wl_callback; msg: Message) =
   case msg.opcode
@@ -266,7 +266,7 @@ proc `create_pool`*(obj: Wl_shm; `id`: Wl_shm_pool; `fd`: FD; `size`: int) =
   request(obj, 0, (`id`, `fd`, `size`))
 
 method `format`*(obj: Wl_shm; `format`: Wl_shm_format) {.base.} =
-  raiseAssert("wl_shm.format not implemented")
+  eventNotImplemented("wl_shm.format")
 
 proc `release`*(obj: Wl_shm) =
   request(obj, 1, ())
@@ -290,7 +290,7 @@ proc `destroy`*(obj: Wl_buffer) =
   request(obj, 0, ())
 
 method `release`*(obj: Wl_buffer) {.base.} =
-  raiseAssert("wl_buffer.release not implemented")
+  eventNotImplemented("wl_buffer.release")
 
 method dispatchEvent*(obj: Wl_buffer; msg: Message) =
   case msg.opcode
@@ -315,7 +315,7 @@ proc `destroy`*(obj: Wl_data_offer) =
   request(obj, 2, ())
 
 method `offer`*(obj: Wl_data_offer; `mime_type`: string) {.base.} =
-  raiseAssert("wl_data_offer.offer not implemented")
+  eventNotImplemented("wl_data_offer.offer")
 
 proc `finish`*(obj: Wl_data_offer) =
   request(obj, 3, ())
@@ -328,11 +328,11 @@ proc `set_actions`*(obj: Wl_data_offer;
 method `source_actions`*(obj: Wl_data_offer;
                          `source_actions`: Wl_data_device_manager_dnd_action) {.
     base.} =
-  raiseAssert("wl_data_offer.source_actions not implemented")
+  eventNotImplemented("wl_data_offer.source_actions")
 
 method `action`*(obj: Wl_data_offer;
                  `dnd_action`: Wl_data_device_manager_dnd_action) {.base.} =
-  raiseAssert("wl_data_offer.action not implemented")
+  eventNotImplemented("wl_data_offer.action")
 
 method dispatchEvent*(obj: Wl_data_offer; msg: Message) =
   case msg.opcode
@@ -364,27 +364,27 @@ proc `destroy`*(obj: Wl_data_source) =
   request(obj, 1, ())
 
 method `target`*(obj: Wl_data_source; `mime_type`: string) {.base.} =
-  raiseAssert("wl_data_source.target not implemented")
+  eventNotImplemented("wl_data_source.target")
 
 method `send`*(obj: Wl_data_source; `mime_type`: string; `fd`: FD) {.base.} =
-  raiseAssert("wl_data_source.send not implemented")
+  eventNotImplemented("wl_data_source.send")
 
 method `cancelled`*(obj: Wl_data_source) {.base.} =
-  raiseAssert("wl_data_source.cancelled not implemented")
+  eventNotImplemented("wl_data_source.cancelled")
 
 proc `set_actions`*(obj: Wl_data_source;
                     `dnd_actions`: Wl_data_device_manager_dnd_action) =
   request(obj, 2, (`dnd_actions`,))
 
 method `dnd_drop_performed`*(obj: Wl_data_source) {.base.} =
-  raiseAssert("wl_data_source.dnd_drop_performed not implemented")
+  eventNotImplemented("wl_data_source.dnd_drop_performed")
 
 method `dnd_finished`*(obj: Wl_data_source) {.base.} =
-  raiseAssert("wl_data_source.dnd_finished not implemented")
+  eventNotImplemented("wl_data_source.dnd_finished")
 
 method `action`*(obj: Wl_data_source;
                  `dnd_action`: Wl_data_device_manager_dnd_action) {.base.} =
-  raiseAssert("wl_data_source.action not implemented")
+  eventNotImplemented("wl_data_source.action")
 
 method dispatchEvent*(obj: Wl_data_source; msg: Message) =
   case msg.opcode
@@ -424,25 +424,25 @@ proc `set_selection`*(obj: Wl_data_device; `source`: Wl_data_source;
   request(obj, 1, (`source`, `serial`))
 
 method `data_offer`*(obj: Wl_data_device; `id`: Wl_data_offer) {.base.} =
-  raiseAssert("wl_data_device.data_offer not implemented")
+  eventNotImplemented("wl_data_device.data_offer")
 
 method `enter`*(obj: Wl_data_device; `serial`: uint; `surface`: Wl_surface;
                 `x`: SignedDecimal; `y`: SignedDecimal; `id`: Wl_data_offer) {.
     base.} =
-  raiseAssert("wl_data_device.enter not implemented")
+  eventNotImplemented("wl_data_device.enter")
 
 method `leave`*(obj: Wl_data_device) {.base.} =
-  raiseAssert("wl_data_device.leave not implemented")
+  eventNotImplemented("wl_data_device.leave")
 
 method `motion`*(obj: Wl_data_device; `time`: uint; `x`: SignedDecimal;
                  `y`: SignedDecimal) {.base.} =
-  raiseAssert("wl_data_device.motion not implemented")
+  eventNotImplemented("wl_data_device.motion")
 
 method `drop`*(obj: Wl_data_device) {.base.} =
-  raiseAssert("wl_data_device.drop not implemented")
+  eventNotImplemented("wl_data_device.drop")
 
 method `selection`*(obj: Wl_data_device; `id`: Wl_data_offer) {.base.} =
-  raiseAssert("wl_data_device.selection not implemented")
+  eventNotImplemented("wl_data_device.selection")
 
 proc `release`*(obj: Wl_data_device) =
   request(obj, 2, ())
@@ -538,14 +538,14 @@ proc `set_class`*(obj: Wl_shell_surface; `class`: string) =
   request(obj, 9, (`class`,))
 
 method `ping`*(obj: Wl_shell_surface; `serial`: uint) {.base.} =
-  raiseAssert("wl_shell_surface.ping not implemented")
+  eventNotImplemented("wl_shell_surface.ping")
 
 method `configure`*(obj: Wl_shell_surface; `edges`: Wl_shell_surface_resize;
                     `width`: int; `height`: int) {.base.} =
-  raiseAssert("wl_shell_surface.configure not implemented")
+  eventNotImplemented("wl_shell_surface.configure")
 
 method `popup_done`*(obj: Wl_shell_surface) {.base.} =
-  raiseAssert("wl_shell_surface.popup_done not implemented")
+  eventNotImplemented("wl_shell_surface.popup_done")
 
 method dispatchEvent*(obj: Wl_shell_surface; msg: Message) =
   case msg.opcode
@@ -590,10 +590,10 @@ proc `commit`*(obj: Wl_surface) =
   request(obj, 6, ())
 
 method `enter`*(obj: Wl_surface; `output`: Wl_output) {.base.} =
-  raiseAssert("wl_surface.enter not implemented")
+  eventNotImplemented("wl_surface.enter")
 
 method `leave`*(obj: Wl_surface; `output`: Wl_output) {.base.} =
-  raiseAssert("wl_surface.leave not implemented")
+  eventNotImplemented("wl_surface.leave")
 
 proc `set_buffer_transform`*(obj: Wl_surface; `transform`: int) =
   request(obj, 7, (`transform`,))
@@ -609,11 +609,11 @@ proc `offset`*(obj: Wl_surface; `x`: int; `y`: int) =
   request(obj, 10, (`x`, `y`))
 
 method `preferred_buffer_scale`*(obj: Wl_surface; `factor`: int) {.base.} =
-  raiseAssert("wl_surface.preferred_buffer_scale not implemented")
+  eventNotImplemented("wl_surface.preferred_buffer_scale")
 
 method `preferred_buffer_transform`*(obj: Wl_surface;
                                      `transform`: Wl_output_transform) {.base.} =
-  raiseAssert("wl_surface.preferred_buffer_transform not implemented")
+  eventNotImplemented("wl_surface.preferred_buffer_transform")
 
 method dispatchEvent*(obj: Wl_surface; msg: Message) =
   case msg.opcode
@@ -643,7 +643,7 @@ func version*(obj: Wl_seat): uint =
   9
 
 method `capabilities`*(obj: Wl_seat; `capabilities`: Wl_seat_capability) {.base.} =
-  raiseAssert("wl_seat.capabilities not implemented")
+  eventNotImplemented("wl_seat.capabilities")
 
 proc `get_pointer`*(obj: Wl_seat; `id`: Wl_pointer) =
   request(obj, 0, (`id`,))
@@ -655,7 +655,7 @@ proc `get_touch`*(obj: Wl_seat; `id`: Wl_touch) =
   request(obj, 2, (`id`,))
 
 method `name`*(obj: Wl_seat; `name`: string) {.base.} =
-  raiseAssert("wl_seat.name not implemented")
+  eventNotImplemented("wl_seat.name")
 
 proc `release`*(obj: Wl_seat) =
   request(obj, 3, ())
@@ -685,48 +685,48 @@ proc `set_cursor`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface;
 
 method `enter`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface;
                 `surface_x`: SignedDecimal; `surface_y`: SignedDecimal) {.base.} =
-  raiseAssert("wl_pointer.enter not implemented")
+  eventNotImplemented("wl_pointer.enter")
 
 method `leave`*(obj: Wl_pointer; `serial`: uint; `surface`: Wl_surface) {.base.} =
-  raiseAssert("wl_pointer.leave not implemented")
+  eventNotImplemented("wl_pointer.leave")
 
 method `motion`*(obj: Wl_pointer; `time`: uint; `surface_x`: SignedDecimal;
                  `surface_y`: SignedDecimal) {.base.} =
-  raiseAssert("wl_pointer.motion not implemented")
+  eventNotImplemented("wl_pointer.motion")
 
 method `button`*(obj: Wl_pointer; `serial`: uint; `time`: uint; `button`: uint;
                  `state`: Wl_pointer_button_state) {.base.} =
-  raiseAssert("wl_pointer.button not implemented")
+  eventNotImplemented("wl_pointer.button")
 
 method `axis`*(obj: Wl_pointer; `time`: uint; `axis`: Wl_pointer_axis;
                `value`: SignedDecimal) {.base.} =
-  raiseAssert("wl_pointer.axis not implemented")
+  eventNotImplemented("wl_pointer.axis")
 
 proc `release`*(obj: Wl_pointer) =
   request(obj, 1, ())
 
 method `frame`*(obj: Wl_pointer) {.base.} =
-  raiseAssert("wl_pointer.frame not implemented")
+  eventNotImplemented("wl_pointer.frame")
 
 method `axis_source`*(obj: Wl_pointer; `axis_source`: Wl_pointer_axis_source) {.
     base.} =
-  raiseAssert("wl_pointer.axis_source not implemented")
+  eventNotImplemented("wl_pointer.axis_source")
 
 method `axis_stop`*(obj: Wl_pointer; `time`: uint; `axis`: Wl_pointer_axis) {.
     base.} =
-  raiseAssert("wl_pointer.axis_stop not implemented")
+  eventNotImplemented("wl_pointer.axis_stop")
 
 method `axis_discrete`*(obj: Wl_pointer; `axis`: Wl_pointer_axis;
                         `discrete`: int) {.base.} =
-  raiseAssert("wl_pointer.axis_discrete not implemented")
+  eventNotImplemented("wl_pointer.axis_discrete")
 
 method `axis_value120`*(obj: Wl_pointer; `axis`: Wl_pointer_axis;
                         `value120`: int) {.base.} =
-  raiseAssert("wl_pointer.axis_value120 not implemented")
+  eventNotImplemented("wl_pointer.axis_value120")
 
 method `axis_relative_direction`*(obj: Wl_pointer; `axis`: Wl_pointer_axis;
     `direction`: Wl_pointer_axis_relative_direction) {.base.} =
-  raiseAssert("wl_pointer.axis_relative_direction not implemented")
+  eventNotImplemented("wl_pointer.axis_relative_direction")
 
 method dispatchEvent*(obj: Wl_pointer; msg: Message) =
   case msg.opcode
@@ -783,29 +783,29 @@ func version*(obj: Wl_keyboard): uint =
 
 method `keymap`*(obj: Wl_keyboard; `format`: Wl_keyboard_keymap_format;
                  `fd`: FD; `size`: uint) {.base.} =
-  raiseAssert("wl_keyboard.keymap not implemented")
+  eventNotImplemented("wl_keyboard.keymap")
 
 method `enter`*(obj: Wl_keyboard; `serial`: uint; `surface`: Wl_surface;
                 `keys`: seq[uint32]) {.base.} =
-  raiseAssert("wl_keyboard.enter not implemented")
+  eventNotImplemented("wl_keyboard.enter")
 
 method `leave`*(obj: Wl_keyboard; `serial`: uint; `surface`: Wl_surface) {.base.} =
-  raiseAssert("wl_keyboard.leave not implemented")
+  eventNotImplemented("wl_keyboard.leave")
 
 method `key`*(obj: Wl_keyboard; `serial`: uint; `time`: uint; `key`: uint;
               `state`: Wl_keyboard_key_state) {.base.} =
-  raiseAssert("wl_keyboard.key not implemented")
+  eventNotImplemented("wl_keyboard.key")
 
 method `modifiers`*(obj: Wl_keyboard; `serial`: uint; `mods_depressed`: uint;
                     `mods_latched`: uint; `mods_locked`: uint; `group`: uint) {.
     base.} =
-  raiseAssert("wl_keyboard.modifiers not implemented")
+  eventNotImplemented("wl_keyboard.modifiers")
 
 proc `release`*(obj: Wl_keyboard) =
   request(obj, 0, ())
 
 method `repeat_info`*(obj: Wl_keyboard; `rate`: int; `delay`: int) {.base.} =
-  raiseAssert("wl_keyboard.repeat_info not implemented")
+  eventNotImplemented("wl_keyboard.repeat_info")
 
 method dispatchEvent*(obj: Wl_keyboard; msg: Message) =
   case msg.opcode
@@ -845,31 +845,31 @@ func version*(obj: Wl_touch): uint =
 method `down`*(obj: Wl_touch; `serial`: uint; `time`: uint;
                `surface`: Wl_surface; `id`: int; `x`: SignedDecimal;
                `y`: SignedDecimal) {.base.} =
-  raiseAssert("wl_touch.down not implemented")
+  eventNotImplemented("wl_touch.down")
 
 method `up`*(obj: Wl_touch; `serial`: uint; `time`: uint; `id`: int) {.base.} =
-  raiseAssert("wl_touch.up not implemented")
+  eventNotImplemented("wl_touch.up")
 
 method `motion`*(obj: Wl_touch; `time`: uint; `id`: int; `x`: SignedDecimal;
                  `y`: SignedDecimal) {.base.} =
-  raiseAssert("wl_touch.motion not implemented")
+  eventNotImplemented("wl_touch.motion")
 
 method `frame`*(obj: Wl_touch) {.base.} =
-  raiseAssert("wl_touch.frame not implemented")
+  eventNotImplemented("wl_touch.frame")
 
 method `cancel`*(obj: Wl_touch) {.base.} =
-  raiseAssert("wl_touch.cancel not implemented")
+  eventNotImplemented("wl_touch.cancel")
 
 proc `release`*(obj: Wl_touch) =
   request(obj, 0, ())
 
 method `shape`*(obj: Wl_touch; `id`: int; `major`: SignedDecimal;
                 `minor`: SignedDecimal) {.base.} =
-  raiseAssert("wl_touch.shape not implemented")
+  eventNotImplemented("wl_touch.shape")
 
 method `orientation`*(obj: Wl_touch; `id`: int; `orientation`: SignedDecimal) {.
     base.} =
-  raiseAssert("wl_touch.orientation not implemented")
+  eventNotImplemented("wl_touch.orientation")
 
 method dispatchEvent*(obj: Wl_touch; msg: Message) =
   case msg.opcode
@@ -909,26 +909,26 @@ func version*(obj: Wl_output): uint =
 method `geometry`*(obj: Wl_output; `x`: int; `y`: int; `physical_width`: int;
                    `physical_height`: int; `subpixel`: int; `make`: string;
                    `model`: string; `transform`: int) {.base.} =
-  raiseAssert("wl_output.geometry not implemented")
+  eventNotImplemented("wl_output.geometry")
 
 method `mode`*(obj: Wl_output; `flags`: Wl_output_mode; `width`: int;
                `height`: int; `refresh`: int) {.base.} =
-  raiseAssert("wl_output.mode not implemented")
+  eventNotImplemented("wl_output.mode")
 
 method `done`*(obj: Wl_output) {.base.} =
-  raiseAssert("wl_output.done not implemented")
+  eventNotImplemented("wl_output.done")
 
 method `scale`*(obj: Wl_output; `factor`: int) {.base.} =
-  raiseAssert("wl_output.scale not implemented")
+  eventNotImplemented("wl_output.scale")
 
 proc `release`*(obj: Wl_output) =
   request(obj, 0, ())
 
 method `name`*(obj: Wl_output; `name`: string) {.base.} =
-  raiseAssert("wl_output.name not implemented")
+  eventNotImplemented("wl_output.name")
 
 method `description`*(obj: Wl_output; `description`: string) {.base.} =
-  raiseAssert("wl_output.description not implemented")
+  eventNotImplemented("wl_output.description")
 
 method dispatchEvent*(obj: Wl_output; msg: Message) =
   case msg.opcode
