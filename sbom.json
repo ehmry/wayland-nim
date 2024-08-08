@@ -7,7 +7,7 @@
       "bom-ref": "pkg:nim/wayland",
       "name": "wayland",
       "description": "Nim native Wayland client",
-      "version": "20240805",
+      "version": "20240808",
       "authors": [
         {
           "name": "Emery Hemingway"
@@ -37,14 +37,14 @@
       "type": "library",
       "bom-ref": "pkg:nim/sys",
       "name": "sys",
-      "version": "4ef3b624db86e331ba334e705c1aa235d55b05e1",
+      "version": "0.0.4",
       "externalReferences": [
         {
-          "url": "https://github.com/ehmry/nim-sys/archive/4ef3b624db86e331ba334e705c1aa235d55b05e1.tar.gz",
+          "url": "https://github.com/alaviss/nim-sys/archive/649b6c63a0418bb459942ab80a882439f2c99b55.tar.gz",
           "type": "source-distribution"
         },
         {
-          "url": "https://github.com/ehmry/nim-sys.git",
+          "url": "https://github.com/alaviss/nim-sys.git",
           "type": "vcs"
         }
       ],
@@ -55,23 +55,27 @@
         },
         {
           "name": "nix:fod:path",
-          "value": "/nix/store/syhxsjlsdqfap0hk4qp3s6kayk8cqknd-source"
+          "value": "/nix/store/vf9ls2wip6d8xhsi3rjh0dqsqg597i6b-source"
         },
         {
           "name": "nix:fod:rev",
-          "value": "4ef3b624db86e331ba334e705c1aa235d55b05e1"
+          "value": "649b6c63a0418bb459942ab80a882439f2c99b55"
         },
         {
           "name": "nix:fod:sha256",
-          "value": "1q4qgw4an4mmmcbx48l6xk1jig1vc8p9cq9dbx39kpnb0890j32q"
+          "value": "12qzx2lnh84xqfgypy0pka8nflq0y8n1izfwx8mb4zya5nzawmyf"
         },
         {
           "name": "nix:fod:url",
-          "value": "https://github.com/ehmry/nim-sys/archive/4ef3b624db86e331ba334e705c1aa235d55b05e1.tar.gz"
+          "value": "https://github.com/alaviss/nim-sys/archive/649b6c63a0418bb459942ab80a882439f2c99b55.tar.gz"
         },
         {
           "name": "nix:fod:srcDir",
           "value": "src"
+        },
+        {
+          "name": "nix:fod:ref",
+          "value": "0.0.4"
         }
       ]
     },
